@@ -4,17 +4,26 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label"; // Need to create Label or use generic
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2, Upload } from "lucide-react";
+import { Loader2 } from "lucide-react";
+import Image from "next/image";
 
 // Simple Label component since I didn't create it yet
 function FormLabel({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
     return <label htmlFor={htmlFor} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">{children}</label>;
 }
 
+interface ProjectData {
+    _id?: string;
+    title: string;
+    description: string;
+    category: string;
+    location?: string;
+    imageUrl?: string;
+}
+
 interface ProjectFormProps {
-    initialData?: any;
+    initialData?: ProjectData;
 }
 
 export function ProjectForm({ initialData }: ProjectFormProps) {
@@ -54,28 +63,11 @@ export function ProjectForm({ initialData }: ProjectFormProps) {
                 headers: { "Content-Type": file.type },
             });
 
-            // 3. Set image URL (assuming public bucket or CloudFront, for now using direct S3 link pattern)
-            // Ideally, use a CloudFront URL or the bucket URL.
-            // For this demo, I'll construct the URL based on the bucket name if available, or just store the key.
-            // Let's assume standard S3 URL for now: https://{bucket}.s3.{region}.amazonaws.com/{key}
-            // But since I don't have the bucket/region in client env easily without exposing, 
-            // I'll just store the key and handle it, or better, just ask the API to return the public URL.
-            // For simplicity, I'll assume the user will configure the public URL base.
-            // Actually, let's just use the key and have a helper, or just full URL if I knew it.
-            // I'll use a placeholder logic: "https://s3.amazonaws.com/" + key (This is likely wrong for private buckets but ok for public read).
-            // A better way is to return the public URL from the API.
-
-            // Let's just use the file object URL for preview if upload fails, but for real app we need the S3 URL.
-            // I'll assume the API returns the public URL or I can construct it.
-            // Let's update the API to return the public URL if possible, or just use the key.
-            // For now, I will just put the key in the state and let the user know.
-
+            // 3. Set image URL
+            // Assuming public bucket or configured domain
             const publicUrl = `https://${process.env.NEXT_PUBLIC_AWS_S3_BUCKET_NAME}.s3.amazonaws.com/${key}`;
-            // Note: NEXT_PUBLIC_... needs to be set.
 
-            setFormData({ ...formData, imageUrl: publicUrl }); // This might be broken if env not set.
-            // Fallback for demo:
-            // setFormData({ ...formData, imageUrl: URL.createObjectURL(file) }); 
+            setFormData({ ...formData, imageUrl: publicUrl });
 
         } catch (error) {
             console.error("Upload failed", error);
@@ -154,7 +146,7 @@ export function ProjectForm({ initialData }: ProjectFormProps) {
                         </div>
                         {formData.imageUrl && (
                             <div className="mt-2 relative h-40 w-full rounded-md overflow-hidden border">
-                                <img src={formData.imageUrl} alt="Preview" className="h-full w-full object-cover" />
+                                <Image src={formData.imageUrl} alt="Preview" fill className="object-cover" />
                             </div>
                         )}
                     </div>

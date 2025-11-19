@@ -12,8 +12,8 @@ export async function PUT(request: Request, props: { params: Promise<{ id: strin
             return NextResponse.json({ error: 'Project not found' }, { status: 404 });
         }
         return NextResponse.json(project);
-    } catch (error) {
-        return NextResponse.json({ error: 'Failed to update project' }, { status: 500 });
+    } catch {
+        return NextResponse.json({ error: "Failed to update project" }, { status: 500 });
     }
 }
 
@@ -26,7 +26,7 @@ export async function DELETE(request: Request, props: { params: Promise<{ id: st
             return NextResponse.json({ error: 'Project not found' }, { status: 404 });
         }
         return NextResponse.json({ message: 'Project deleted' });
-    } catch (error) {
-        return NextResponse.json({ error: 'Failed to delete project' }, { status: 500 });
+    } catch {
+        return NextResponse.json({ error: "Failed to delete project" }, { status: 500 });
     }
 }
