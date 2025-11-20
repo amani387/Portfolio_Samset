@@ -61,15 +61,16 @@ export default function Carousel({ slides, autoPlayInterval = 5000 }: CarouselPr
                         />
                         {/* Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+                        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/80 to-transparent" />
                     </div>
 
                     {/* Content */}
                     <div className="relative z-20 h-full container mx-auto px-4 flex flex-col justify-center text-white">
                         <div className="max-w-4xl space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
-                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
+                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight drop-shadow-lg">
                                 {slide.title}
                             </h2>
-                            <p className="text-lg md:text-xl text-gray-200 max-w-xl">
+                            <p className="text-lg md:text-xl text-gray-100 max-w-xl drop-shadow-md">
                                 {slide.description}
                             </p>
                             {slide.cta && (

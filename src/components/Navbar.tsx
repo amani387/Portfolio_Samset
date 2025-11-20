@@ -38,7 +38,7 @@ export function Navbar() {
         >
             <div className="container flex h-20 items-center justify-between px-4 md:px-6">
                 <Link href="/" className="flex items-center space-x-2 group">
-                    <div className="relative h-10 w-10 overflow-hidden rounded-xl bg-white/10 p-1 transition-transform group-hover:scale-105">
+                    <div className="relative h-10 w-10 overflow-hidden rounded-xl bg-primary p-1 transition-transform group-hover:scale-105 shadow-lg">
                         {/* Placeholder for logo if not present, or use the image */}
                         <Image
                             src="/logo.png"
@@ -50,10 +50,10 @@ export function Navbar() {
                         />
                     </div>
                     <span className={cn(
-                        "font-bold text-xl tracking-tight transition-colors",
+                        "font-bold text-xl tracking-tight transition-colors drop-shadow-md",
                         isScrolled ? "text-foreground" : "text-white"
                     )}>
-                        Samset<span className="text-primary">Engineering</span>
+                        Samset<span className={isScrolled ? "text-primary" : "text-white"}>Engineering</span>
                     </span>
                 </Link>
 
