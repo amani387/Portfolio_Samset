@@ -22,52 +22,48 @@
 }
 
 :root {
-  /* Premium Light Mode - Royal Blue & Gold Theme */
-  --background: #ffffff;
-  --foreground: #0f172a;
-  /* Slate 900 */
+  /* Custom Theme */
+  --background: #fffefc;
+  --foreground: #000000;
 
-  /* Primary: Deep Royal Blue */
-  --primary: #1e3a8a;
+  /* Primary: Green */
+  --primary: #44aa00;
   --primary-foreground: #ffffff;
 
-  /* Secondary: Gold/Amber for accents */
-  --secondary: #d97706;
+  /* Secondary: Orange */
+  --secondary: #ff8819;
   --secondary-foreground: #ffffff;
 
-  /* Muted: Slate 100 */
-  --muted: #f1f5f9;
+  /* Muted: Light Grey */
+  --muted: #f0f0f0;
   --muted-foreground: #64748b;
-  /* Slate 500 */
 
-  /* Accent: Very Light Blue */
-  --accent: #eff6ff;
-  --accent-foreground: #1e3a8a;
+  /* Accent: Very Light Green */
+  --accent: #f0fdf4;
+  --accent-foreground: #44aa00;
 
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #1e3a8a;
+  --ring: #44aa00;
 
   --radius: 0.5rem;
 }
 
 .dark {
-  /* Premium Dark Mode */
+  /* Dark Mode - Adapted for contrast */
   --background: #020617;
-  /* Slate 950 */
   --foreground: #f8fafc;
-  /* Slate 50 */
 
-  /* Primary: Lighter Royal Blue */
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
+  /* Primary: Lighter Green for dark mode */
+  --primary: #4ade80;
+  --primary-foreground: #000000;
 
-  /* Secondary: Amber 500 */
-  --secondary: #f59e0b;
-  --secondary-foreground: #ffffff;
+  /* Secondary: Lighter Orange for dark mode */
+  --secondary: #fbbf24;
+  --secondary-foreground: #000000;
 
   /* Muted: Slate 900 */
   --muted: #0f172a;
@@ -75,14 +71,14 @@
 
   /* Accent: Slate 800 */
   --accent: #1e293b;
-  --accent-foreground: #f8fafc;
+  --accent-foreground: #4ade80;
 
   --destructive: #7f1d1d;
   --destructive-foreground: #ffffff;
 
   --border: #1e293b;
   --input: #1e293b;
-  --ring: #3b82f6;
+  --ring: #4ade80;
 }
 
 body {

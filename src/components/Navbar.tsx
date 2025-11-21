@@ -6,10 +6,12 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useSession, signIn } from "next-auth/react";
 
 export function Navbar() {
     const [isScrolled, setIsScrolled] = React.useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+    const { data: session } = useSession();
 
     React.useEffect(() => {
         const handleScroll = () => {
@@ -71,13 +73,23 @@ export function Navbar() {
                             {link.name}
                         </Link>
                     ))}
-                    <Button
-                        asChild
-                        variant={isScrolled ? "default" : "secondary"}
-                        className="rounded-full px-6 shadow-lg hover:shadow-xl transition-all"
-                    >
-                        <Link href="/#contact">Get a Quote</Link>
-                    </Button>
+                    {session ? (
+                        <Button
+                            asChild
+                            variant={isScrolled ? "default" : "secondary"}
+                            className="rounded-full px-6 shadow-lg hover:shadow-xl transition-all"
+                        >
+                            <Link href="/admin">Admin Dashboard</Link>
+                        </Button>
+                    ) : (
+                        <Button
+                            onClick={() => signIn()}
+                            variant={isScrolled ? "default" : "secondary"}
+                            className="rounded-full px-6 shadow-lg hover:shadow-xl transition-all"
+                        >
+                            Login
+                        </Button>
+                    )}
                 </nav>
 
                 {/* Mobile Menu Toggle */}
@@ -108,11 +120,17 @@ export function Navbar() {
                                 {link.name}
                             </Link>
                         ))}
-                        <Button asChild className="w-full mt-4 rounded-full">
-                            <Link href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>
-                                Get a Quote
-                            </Link>
-                        </Button>
+                        {session ? (
+                            <Button asChild className="w-full mt-4 rounded-full">
+                                <Link href="/admin" onClick={() => setIsMobileMenuOpen(false)}>
+                                    Admin Dashboard
+                                </Link>
+                            </Button>
+                        ) : (
+                            <Button onClick={() => { signIn(); setIsMobileMenuOpen(false); }} className="w-full mt-4 rounded-full">
+                                Login
+                            </Button>
+                        )}
                     </div>
                 </div>
             )}

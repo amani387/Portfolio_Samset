@@ -13,7 +13,7 @@ export default async function AdminPage() {
     const projects = await Project.find({}).sort({ createdAt: -1 });
 
     return (
-        <div className="container py-10">
+        <div className="container py-10 mt-10">
             <div className="flex justify-between items-center mb-8">
                 <h1 className="text-3xl font-bold">Admin Dashboard</h1>
                 <Button asChild>
